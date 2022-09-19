@@ -1,21 +1,20 @@
+require('dotenv').config()
 const mysql = require('mysql')
 
 const connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
+    host     : process.env.HOST,
+    user     : process.env.USER,
+    password : process.env.PASSWORD,
     database : 'blog_db'
 })
    
 connection.connect((error) => {
     if(!error){
         console.log('Database connection successful!')
+
         // Create Database
-        // connection.query('CREATE DATABASE IF NOT EXISTS blog_db', (error, results) => {
-        //     if (error) throw error
-        //     console.log(results)
-        //     console.log("Database created successfully!")
-        // })
+        // const sql = "CREATE DATABASE IF NOT EXISTS blog_db"
+        // const message = "Database created successfully!"
 
         // Create Table
         // const sql = `CREATE TABLE IF NOT EXISTS posts (
@@ -26,10 +25,12 @@ connection.connect((error) => {
         //     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         //     PRIMARY KEY (id)
         // )ENGINE=InnoDB`
+        // const message = "Table created successfully!"
+
         // connection.query(sql , (error, results) => {
         //     if (error) throw error
         //     console.log(results)
-        //     console.log("Table created successfully!")
+        //     console.log(message)
         // })        
     }else{
         console.log('Database Connection Failed!'+ JSON.stringify(error,undefined,2))

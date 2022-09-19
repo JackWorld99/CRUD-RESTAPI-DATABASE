@@ -1,5 +1,6 @@
 const express = require('express')
 const postsRoute = require("./routes/index")
+require('dotenv').config()
 const port = process.env.PORT || 3000
 const app = express()
 
